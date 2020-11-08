@@ -1,5 +1,7 @@
 package com.epam.jwd.core_final.domain;
 
+import java.util.Objects;
+
 /**
  * Expected fields:
  * <p>
@@ -8,15 +10,42 @@ package com.epam.jwd.core_final.domain;
  */
 public abstract class AbstractBaseEntity implements BaseEntity {
 
+    private static long idCounter = 1;
+
+    private final Long id;
+
+    private String name;
+
+    public AbstractBaseEntity() {
+        id = idCounter++;
+    }
+
+    public AbstractBaseEntity(String name) {
+        this.name = name;
+        id = idCounter++;
+    }
+
     @Override
     public Long getId() {
-        // todo
-        return null;
+        return id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AbstractBaseEntity)) return false;
+        AbstractBaseEntity that = (AbstractBaseEntity) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
     }
 
     @Override
     public String getName() {
-        // todo
-        return null;
+        return name;
     }
 }
