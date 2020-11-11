@@ -47,7 +47,8 @@ public interface ApplicationMenu {
             }
             case 4: {
                 EntityMenu entityMenu = new JSONHandler();
-                ((Function<Object, Object>) entityMenu::handleInput)
+                ((Function<Object, Object>) entityMenu::show)
+                        .andThen(entityMenu::handleInput)
                         .apply(entityMenu);
                 break;
             }

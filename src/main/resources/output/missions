@@ -1,6 +1,6 @@
 [ {
   "id" : 131,
-  "name" : "Mission 1",
+  "name" : "fdfd",
   "assignedCrew" : [ {
     "id" : 1,
     "name" : "Davey Bentley",
@@ -134,16 +134,16 @@
     "flightDistance" : 201117,
     "readyForNextMissions" : false
   },
-  "distance" : 23123,
+  "distance" : 34234,
   "endedAt" : {
-    "year" : 2002,
+    "year" : 2001,
     "monthValue" : 1,
     "dayOfMonth" : 1,
     "hour" : 11,
     "minute" : 11,
-    "second" : 11,
+    "second" : 12,
     "nano" : 0,
-    "dayOfWeek" : "TUESDAY",
+    "dayOfWeek" : "MONDAY",
     "dayOfYear" : 1,
     "month" : "JANUARY",
     "chronology" : {

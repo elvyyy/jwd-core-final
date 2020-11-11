@@ -182,7 +182,7 @@ public class CriteriaUtil {
         return choices;
     }
 
-    private static List<Integer> separateArgs(Object o) {
+    public static List<Integer> separateArgs(Object o) {
         String[] args = ((String) o).split(" ");
         return Arrays.stream(args)
                 .map(String::trim)

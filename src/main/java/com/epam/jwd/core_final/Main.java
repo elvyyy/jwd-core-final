@@ -11,17 +11,22 @@ public class Main {
 
     public static void main(String[] args) {
         log.info("Starting application...");
+        ApplicationMenu menu = null;
         try {
-            ApplicationMenu menu = Application.start();
+            menu = Application.start();
             while (true) {
-                Long choice = (Long) menu.printAvailableOptions();
-                if (choice == 0) {
-                    break;
+                try {
+                    Long choice = (Long) menu.printAvailableOptions();
+                    if (choice == 0) {
+                        break;
+                    }
+                    menu.handleUserInput(choice);
+                } catch (Exception e) {
+                    log.error("Something went wrong", e);
                 }
-                menu.handleUserInput(choice);
             }
         } catch (Exception e) {
-            log.error("Something went wrong", e);
+            log.error("Cannot initialize app");
         }
         log.info("Finishing execution.");
     }
