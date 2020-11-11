@@ -8,6 +8,7 @@ import com.epam.jwd.core_final.domain.Spaceship;
 import com.epam.jwd.core_final.exception.InvalidStateException;
 import com.epam.jwd.core_final.service.FileInputReader;
 import com.epam.jwd.core_final.service.impl.CrewFileInputReader;
+import com.epam.jwd.core_final.service.impl.SpaceshipFileInputReader;
 import com.epam.jwd.core_final.util.PropertyReaderUtil;
 
 import java.util.ArrayList;
@@ -38,6 +39,8 @@ public class NassaContext implements ApplicationContext {
             return (Collection<T>) crewMembers;
         } else if (tClass == Spaceship.class) {
             return (Collection<T>) spaceships;
+        } else if (tClass == FlightMission.class) {
+            return (Collection<T>) flightMissions;
         }
         return null;
     }
@@ -51,14 +54,7 @@ public class NassaContext implements ApplicationContext {
         PropertyReaderUtil.loadProperties();
         FileInputReader fileInputReader = new CrewFileInputReader();
         fileInputReader.readAll();
-    }
-
-    public static void main(String[] args) {
-        NassaContext context = new NassaContext();
-        Collection<CrewMember> crewMembers = context.retrieveBaseEntityList(CrewMember.class);
-        Collection<Spaceship> spaceships = context.retrieveBaseEntityList(Spaceship.class);
-        if (crewMembers != null && spaceships != null) {
-            System.out.println("Hello world");
-        }
+        fileInputReader = new SpaceshipFileInputReader();
+        fileInputReader.readAll();
     }
 }
