@@ -6,6 +6,7 @@ import com.epam.jwd.core_final.domain.CrewMember;
 import com.epam.jwd.core_final.domain.FlightMission;
 import com.epam.jwd.core_final.domain.Rank;
 import com.epam.jwd.core_final.domain.Role;
+import com.epam.jwd.core_final.exception.EntityExistsInStorage;
 import com.epam.jwd.core_final.factory.impl.CrewMemberFactory;
 import com.epam.jwd.core_final.service.CrewService;
 
@@ -52,18 +53,34 @@ public class CrewServiceImpl implements CrewService {
     }
 
     @Override
-    public CrewMember updateCrewMemberDetails(CrewMember crewMember) {
-        return null;
+    public CrewMember updateCrewMemberDetails(CrewMember crewMember, Object... args) {
+        String name = (String) args[0];
+        Role role = (Role) args[1];
+        Rank rank = (Rank) args[2];
+        Boolean isReadyForNextMissions = (Boolean) args[3];
+        crewMember.setName(name);
+        crewMember.setRole(role);
+        crewMember.setRank(rank);
+        crewMember.setReadyForNextMissions(isReadyForNextMissions);
+        return crewMember;
     }
 
     @Override
-    public void assignCrewMemberOnMission (CrewMember crewMember, FlightMission mission) throws RuntimeException {
-
+    public void assignCrewMemberOnMission(CrewMember crewMember, FlightMission mission) throws RuntimeException {
+        if (crewMember.isReadyForNextMissions()) {
+            mission.addCrewMember(crewMember);
+        }
     }
 
     @Override
     public CrewMember createCrewMember(Role role, String name, Rank rank) throws RuntimeException {
-        return CrewMemberFactory.getInstance().create(name, role, rank);
+        CrewMember crewMember = CrewMemberFactory.getInstance().create(name, role, rank);
+        if (NassaContext.getInstance()
+                .retrieveBaseEntityList(CrewMember.class)
+                .add(crewMember)) {
+            return crewMember;
+        }
+        throw new EntityExistsInStorage("CrewMember already exists in the storage");
     }
 
     @Override
