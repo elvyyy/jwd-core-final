@@ -7,6 +7,15 @@ import com.epam.jwd.core_final.factory.EntityFactory;
 import java.util.Map;
 
 public class SpaceshipFactory implements EntityFactory<Spaceship> {
+    private static final SpaceshipFactory instance = new SpaceshipFactory();
+
+    private SpaceshipFactory(){
+    }
+
+    public static SpaceshipFactory getInstance() {
+        return instance;
+    }
+
     @Override
     public Spaceship create(Object... args) {
         String name = (String) args[0];
