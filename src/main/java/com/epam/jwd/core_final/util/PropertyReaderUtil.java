@@ -17,6 +17,10 @@ public final class PropertyReaderUtil {
     private PropertyReaderUtil() {
     }
 
+    public static Properties getProperties() {
+        return properties;
+    }
+
     /**
      * try-with-resource using FileInputStream.
      *
@@ -59,9 +63,5 @@ public final class PropertyReaderUtil {
         applicationProperties.setSpaceshipsFileName(spaceshipsFileName);
         applicationProperties.setFileRefreshRate(Integer.valueOf(fileRefreshRate));
         applicationProperties.setDateTimeFormat(dateTimeFormat);
-    }
-
-    public static Properties getProperties() {
-        return properties;
     }
 }

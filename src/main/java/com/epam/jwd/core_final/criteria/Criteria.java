@@ -11,16 +11,6 @@ public abstract class Criteria<T extends BaseEntity> {
     private Long id;
     private String name;
 
-    public Criteria<T> setId(Long id) {
-        this.id = id;
-        return this;
-    }
-
-    public Criteria<T> setName(String name) {
-        this.name = name;
-        return this;
-    }
-
     public <T extends BaseEntity> boolean matches(T entity) {
         Objects.requireNonNull(entity);
         boolean result = true;
@@ -31,5 +21,15 @@ public abstract class Criteria<T extends BaseEntity> {
             result &= name.equals(entity.getName());
         }
         return result;
+    }
+
+    public Criteria<T> setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public Criteria<T> setName(String name) {
+        this.name = name;
+        return this;
     }
 }

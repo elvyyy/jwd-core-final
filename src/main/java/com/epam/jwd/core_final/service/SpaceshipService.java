@@ -15,15 +15,6 @@ import java.util.Optional;
  */
 public interface SpaceshipService {
 
-    List<Spaceship> findAllSpaceships();
-
-    List<Spaceship> findAllSpaceshipsByCriteria(Criteria<? extends Spaceship> criteria);
-
-    Optional<Spaceship> findSpaceshipByCriteria(Criteria<? extends Spaceship> criteria);
-
-    Spaceship updateSpaceshipDetails(Spaceship spaceship, Long flightDistance,
-                                     Boolean isReadyForNextMissions, Map<Role, Short> crew);
-
     // todo create custom exception for case, when spaceship is not able to be assigned
     void assignSpaceshipOnMission(Spaceship crewMember, FlightMission mission) throws RuntimeException;
 
@@ -32,4 +23,13 @@ public interface SpaceshipService {
     // todo create custom exception for case, when crewMember is not able to be created (for example - duplicate.
     // spaceship unique criteria - only name!
     Spaceship createSpaceship(Spaceship spaceship) throws RuntimeException;
+
+    List<Spaceship> findAllSpaceships();
+
+    List<Spaceship> findAllSpaceshipsByCriteria(Criteria<? extends Spaceship> criteria);
+
+    Optional<Spaceship> findSpaceshipByCriteria(Criteria<? extends Spaceship> criteria);
+
+    Spaceship updateSpaceshipDetails(Spaceship spaceship, Long flightDistance,
+                                     Boolean isReadyForNextMissions, Map<Role, Short> crew);
 }

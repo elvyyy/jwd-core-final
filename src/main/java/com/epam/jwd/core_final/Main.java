@@ -2,7 +2,6 @@ package com.epam.jwd.core_final;
 
 import com.epam.jwd.core_final.context.Application;
 import com.epam.jwd.core_final.context.ApplicationMenu;
-import com.epam.jwd.core_final.context.impl.NassaContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +11,6 @@ public class Main {
 
     public static void main(String[] args) {
         log.info("Starting application...");
-        NassaContext instance;
         try {
             ApplicationMenu menu = Application.start();
             while (true) {
@@ -23,7 +21,7 @@ public class Main {
                 menu.handleUserInput(choice);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Something went wrong", e);
         }
         log.info("Finishing execution.");
     }

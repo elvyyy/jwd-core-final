@@ -17,6 +17,15 @@ package com.epam.jwd.core_final.domain;
 public class ApplicationProperties {
 
     private static ApplicationProperties instance = null;
+    private String crewFileName;
+    private String dateTimeFormat;
+
+    //todo
+    private Integer fileRefreshRate;
+    private String inputRootDir;
+    private String missionsFileName;
+    private String outputRootDir;
+    private String spaceshipsFileName;
 
     private ApplicationProperties() {
     }
@@ -28,75 +37,59 @@ public class ApplicationProperties {
         return instance;
     }
 
-    //todo
-
-    private String inputRootDir;
-
-    private String outputRootDir;
-
-    private String crewFileName;
-
-    private String missionsFileName;
-
-    private String spaceshipsFileName;
-
-    private Integer fileRefreshRate;
-
-    private String dateTimeFormat;
-
-    public String getInputRootDir() {
-        return inputRootDir;
-    }
-
-    public String getOutputRootDir() {
-        return outputRootDir;
-    }
-
     public String getCrewFileName() {
         return crewFileName;
-    }
-
-    public String getMissionsFileName() {
-        return missionsFileName;
-    }
-
-    public String getSpaceshipsFileName() {
-        return spaceshipsFileName;
-    }
-
-    public Integer getFileRefreshRate() {
-        return fileRefreshRate;
-    }
-
-    public String getDateTimeFormat() {
-        return dateTimeFormat;
-    }
-
-    public void setInputRootDir(String inputRootDir) {
-        this.inputRootDir = inputRootDir;
-    }
-
-    public void setOutputRootDir(String outputRootDir) {
-        this.outputRootDir = outputRootDir;
     }
 
     public void setCrewFileName(String crewFileName) {
         this.crewFileName = crewFileName;
     }
 
-    public void setMissionsFileName(String missionsFileName) {
-        this.missionsFileName = missionsFileName;
+    public String getDateTimeFormat() {
+        return dateTimeFormat;
     }
 
-    public void setSpaceshipsFileName(String spaceshipsFileName) {
-        this.spaceshipsFileName = spaceshipsFileName;
+    public void setDateTimeFormat(String dateTimeFormat) {
+        this.dateTimeFormat = dateTimeFormat;
+    }
+
+    public Integer getFileRefreshRate() {
+        return fileRefreshRate;
     }
 
     public void setFileRefreshRate(Integer fileRefreshRate) {
         this.fileRefreshRate = fileRefreshRate;
     }
 
-    public void setDateTimeFormat(String dateTimeFormat) {
-        this.dateTimeFormat = dateTimeFormat;
+    public String getInputRootDir() {
+        return inputRootDir;
+    }
+
+    public void setInputRootDir(String inputRootDir) {
+        this.inputRootDir = inputRootDir;
+    }
+
+    public String getMissionsFileName() {
+        return missionsFileName;
+    }
+
+    public void setMissionsFileName(String missionsFileName) {
+        this.missionsFileName = missionsFileName;
+    }
+
+    public String getOutputRootDir() {
+        return outputRootDir;
+    }
+
+    public void setOutputRootDir(String outputRootDir) {
+        this.outputRootDir = outputRootDir;
+    }
+
+    public String getSpaceshipsFileName() {
+        return spaceshipsFileName;
+    }
+
+    public void setSpaceshipsFileName(String spaceshipsFileName) {
+        this.spaceshipsFileName = spaceshipsFileName;
     }
 }

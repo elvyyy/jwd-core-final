@@ -1,11 +1,6 @@
 package com.epam.jwd.core_final.exception;
 
 public class EntityAlreadyAssigned extends RuntimeException {
-    @Override
-    public String getMessage() {
-        return super.getMessage();
-    }
-
     public EntityAlreadyAssigned() {
     }
 
@@ -23,5 +18,10 @@ public class EntityAlreadyAssigned extends RuntimeException {
 
     public EntityAlreadyAssigned(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
+    }
+
+    @Override
+    public String getMessage() {
+        return super.getMessage();
     }
 }

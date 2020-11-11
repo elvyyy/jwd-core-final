@@ -9,7 +9,7 @@ public interface Application {
     static ApplicationMenu start() throws Exception {
         final Supplier<ApplicationContext> applicationContextSupplier = NassaContext::getInstance;
         final NassaContext nassaContext = NassaContext.getInstance();
-        
+
         nassaContext.init();
         return applicationContextSupplier::get;
     }

@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 public interface EntityMenu {
 
+    Object handleInput(Object o);
+
     default Object show(Object o) {
         boolean notOk = true;
         int choice = -1;
@@ -24,6 +26,4 @@ public interface EntityMenu {
         }
         return choice;
     }
-
-    Object handleInput(Object o);
 }

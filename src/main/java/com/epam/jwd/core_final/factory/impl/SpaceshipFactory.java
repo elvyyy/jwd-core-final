@@ -9,7 +9,7 @@ import java.util.Map;
 public class SpaceshipFactory implements EntityFactory<Spaceship> {
     private static final SpaceshipFactory instance = new SpaceshipFactory();
 
-    private SpaceshipFactory(){
+    private SpaceshipFactory() {
     }
 
     public static SpaceshipFactory getInstance() {

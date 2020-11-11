@@ -13,16 +13,6 @@ public class SpaceshipCriteria extends Criteria<Spaceship> {
 
     private Boolean isReadyForNextMissions;
 
-    public SpaceshipCriteria setFlightDistance(Long flightDistance) {
-        this.flightDistance = flightDistance;
-        return this;
-    }
-
-    public SpaceshipCriteria setReadyForNextMissions(Boolean readyForNextMissions) {
-        isReadyForNextMissions = readyForNextMissions;
-        return this;
-    }
-
     public <T extends BaseEntity> boolean matches(T entity) {
         boolean result = super.matches(entity);
         Spaceship member = (Spaceship) entity;
@@ -33,5 +23,15 @@ public class SpaceshipCriteria extends Criteria<Spaceship> {
             result &= isReadyForNextMissions.equals(member.isReadyForNextMissions());
         }
         return result;
+    }
+
+    public SpaceshipCriteria setFlightDistance(Long flightDistance) {
+        this.flightDistance = flightDistance;
+        return this;
+    }
+
+    public SpaceshipCriteria setReadyForNextMissions(Boolean readyForNextMissions) {
+        isReadyForNextMissions = readyForNextMissions;
+        return this;
     }
 }

@@ -15,14 +15,6 @@ import java.util.Optional;
  */
 public interface CrewService {
 
-    List<CrewMember> findAllCrewMembers();
-
-    List<CrewMember> findAllCrewMembersByCriteria(Criteria<? extends CrewMember> criteria);
-
-    Optional<CrewMember> findCrewMemberByCriteria(Criteria<? extends CrewMember> criteria);
-
-    CrewMember updateCrewMemberDetails(CrewMember crewMember, Object... args);
-
     // todo create custom exception for case, when crewMember is not able to be assigned
     void assignCrewMemberOnMission(CrewMember crewMember, FlightMission mission) throws RuntimeException;
 
@@ -31,4 +23,12 @@ public interface CrewService {
     CrewMember createCrewMember(CrewMember crewMember) throws RuntimeException;
 
     CrewMember createCrewMember(Role role, String name, Rank rank) throws RuntimeException;
+
+    List<CrewMember> findAllCrewMembers();
+
+    List<CrewMember> findAllCrewMembersByCriteria(Criteria<? extends CrewMember> criteria);
+
+    Optional<CrewMember> findCrewMemberByCriteria(Criteria<? extends CrewMember> criteria);
+
+    CrewMember updateCrewMemberDetails(CrewMember crewMember, Object... args);
 }

@@ -88,7 +88,7 @@ public class CriteriaUtil {
                     System.out.println("3 - PILOT");
                     System.out.println("4 - COMMANDER");
                     long choice = InputUtil.handleChoice(1, 4);
-                    Role role = resolveRoleById((int)choice);
+                    Role role = resolveRoleById((int) choice);
                     choices.put("role", role);
                     break;
                 }
@@ -99,7 +99,7 @@ public class CriteriaUtil {
                     System.out.println("3 - FIRST_OFFICER");
                     System.out.println("4 - CAPTAIN");
                     long choice = InputUtil.handleChoice(1, 4);
-                    Rank rank = resolveRankById((int)choice);
+                    Rank rank = resolveRankById((int) choice);
                     choices.put("rank", rank);
                     break;
                 }

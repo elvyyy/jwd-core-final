@@ -17,8 +17,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class MissionServiceImpl implements MissionService {
-    private static final Logger log = LoggerFactory.getLogger(MissionServiceImpl.class);
     private static final MissionServiceImpl instance = new MissionServiceImpl();
+    private static final Logger log = LoggerFactory.getLogger(MissionServiceImpl.class);
 
     private MissionServiceImpl() {
     }
@@ -30,7 +30,7 @@ public class MissionServiceImpl implements MissionService {
     @Override
     public List<FlightMission> findAllMissions() {
         return new ArrayList<>(NassaContext.getInstance()
-                    .retrieveBaseEntityList(FlightMission.class));
+                .retrieveBaseEntityList(FlightMission.class));
     }
 
     @Override

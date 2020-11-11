@@ -15,47 +15,12 @@ import java.util.Objects;
  */
 public class FlightMissionCriteria extends Criteria<FlightMission> {
 
-    private LocalDateTime startedAt;
-
-    private LocalDateTime endedAt;
-
-    private Long distance;
-
-    private Spaceship assignedSpaceship;
-
     private List<CrewMember> assignedCrew;
-
+    private Spaceship assignedSpaceship;
+    private Long distance;
+    private LocalDateTime endedAt;
     private MissionResult missionResult;
-
-    public FlightMissionCriteria setStartedAt(LocalDateTime startedAt) {
-        this.startedAt = startedAt;
-        return this;
-    }
-
-    public FlightMissionCriteria setEndedAt(LocalDateTime endedAt) {
-        this.endedAt = endedAt;
-        return this;
-    }
-
-    public FlightMissionCriteria setDistance(Long distance) {
-        this.distance = distance;
-        return this;
-    }
-
-    public FlightMissionCriteria setAssignedSpaceship(Spaceship assignedSpaceship) {
-        this.assignedSpaceship = assignedSpaceship;
-        return this;
-    }
-
-    public FlightMissionCriteria setAssignedCrew(List<CrewMember> assignedCrew) {
-        this.assignedCrew = assignedCrew;
-        return this;
-    }
-
-    public FlightMissionCriteria setMissionResult(MissionResult missionResult) {
-        this.missionResult = missionResult;
-        return this;
-    }
+    private LocalDateTime startedAt;
 
     @Override
     public <T extends BaseEntity> boolean matches(T entity) {
@@ -80,5 +45,35 @@ public class FlightMissionCriteria extends Criteria<FlightMission> {
             result &= missionResult.equals(member.getMissionResult());
         }
         return result;
+    }
+
+    public FlightMissionCriteria setAssignedCrew(List<CrewMember> assignedCrew) {
+        this.assignedCrew = assignedCrew;
+        return this;
+    }
+
+    public FlightMissionCriteria setAssignedSpaceship(Spaceship assignedSpaceship) {
+        this.assignedSpaceship = assignedSpaceship;
+        return this;
+    }
+
+    public FlightMissionCriteria setDistance(Long distance) {
+        this.distance = distance;
+        return this;
+    }
+
+    public FlightMissionCriteria setEndedAt(LocalDateTime endedAt) {
+        this.endedAt = endedAt;
+        return this;
+    }
+
+    public FlightMissionCriteria setMissionResult(MissionResult missionResult) {
+        this.missionResult = missionResult;
+        return this;
+    }
+
+    public FlightMissionCriteria setStartedAt(LocalDateTime startedAt) {
+        this.startedAt = startedAt;
+        return this;
     }
 }

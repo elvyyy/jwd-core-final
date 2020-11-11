@@ -16,20 +16,10 @@ public interface ApplicationMenu {
 
     ApplicationContext getApplicationContext();
 
-    default Object printAvailableOptions() {
-        System.out.println("0 - exit");
-        System.out.println("1 - print members");
-        System.out.println("2 - find by criteria");
-        System.out.println("3 - Create a new mission");
-        System.out.println("4 - Make a JSON file of missions");
-        System.out.println("5 - Update a mission");
-        return InputUtil.handleChoice(0, 5);
-    }
-
     default Object handleUserInput(Object o) {
         long choice = (Long) o;
 
-        switch ((int)choice) {
+        switch ((int) choice) {
             case 0: {
                 break;
             }
@@ -70,5 +60,15 @@ public interface ApplicationMenu {
             }
         }
         return null;
+    }
+
+    default Object printAvailableOptions() {
+        System.out.println("0 - exit");
+        System.out.println("1 - print members");
+        System.out.println("2 - find by criteria");
+        System.out.println("3 - Create a new mission");
+        System.out.println("4 - Make a JSON file of missions");
+        System.out.println("5 - Update a mission");
+        return InputUtil.handleChoice(0, 5);
     }
 }

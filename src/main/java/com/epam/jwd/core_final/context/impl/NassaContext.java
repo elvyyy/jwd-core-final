@@ -20,8 +20,8 @@ public class NassaContext implements ApplicationContext {
 
     // no getters/setters for them
     private final Collection<CrewMember> crewMembers = new ArrayList<>();
-    private final Collection<Spaceship> spaceships = new ArrayList<>();
     private final Collection<FlightMission> flightMissions = new ArrayList<>();
+    private final Collection<Spaceship> spaceships = new ArrayList<>();
 
     private NassaContext() {
     }
@@ -47,6 +47,7 @@ public class NassaContext implements ApplicationContext {
 
     /**
      * You have to read input files, populate collections
+     *
      * @throws InvalidStateException
      */
     @Override

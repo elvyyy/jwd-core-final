@@ -9,7 +9,7 @@ import com.epam.jwd.core_final.factory.EntityFactory;
 public class CrewMemberFactory implements EntityFactory<CrewMember> {
     private static final CrewMemberFactory instance = new CrewMemberFactory();
 
-    private CrewMemberFactory(){
+    private CrewMemberFactory() {
     }
 
     public static CrewMemberFactory getInstance() {

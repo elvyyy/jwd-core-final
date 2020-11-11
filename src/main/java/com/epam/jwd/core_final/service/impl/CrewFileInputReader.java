@@ -25,7 +25,7 @@ public class CrewFileInputReader implements FileInputReader {
 
         String rawLine;
         try (Stream<String> stream = Files.lines(Paths.get(filePath))) {
-             rawLine = stream
+            rawLine = stream
                     .filter(line -> !line.startsWith("#"))
                     .findFirst()
                     .orElseThrow(() -> new InvalidStateException("Cannot parse input file " + filePath));

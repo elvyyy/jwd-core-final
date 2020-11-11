@@ -10,6 +10,10 @@ import java.util.Optional;
 
 public interface MissionService {
 
+    FlightMission createMission(String name, LocalDateTime startedAt, LocalDateTime endedAt, Long distance);
+
+    FlightMission createMission(FlightMission flightMission);
+
     List<FlightMission> findAllMissions();
 
     List<FlightMission> findAllMissionsByCriteria(Criteria<? extends FlightMission> criteria);
@@ -18,8 +22,4 @@ public interface MissionService {
 
     FlightMission updateFlightMissionDetails(FlightMission flightMission, String name, LocalDateTime startedAt,
                                              LocalDateTime endedAt, Long distance, MissionResult missionResult);
-
-    FlightMission createMission(String name, LocalDateTime startedAt, LocalDateTime endedAt, Long distance);
-
-    FlightMission createMission(FlightMission flightMission);
 }

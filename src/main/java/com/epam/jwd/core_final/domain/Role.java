@@ -16,6 +16,18 @@ public enum Role implements BaseEntity {
         this.id = id;
     }
 
+    /**
+     * todo via java.lang.enum methods!
+     *
+     * @throws UnknownEntityException if such id does not exist
+     */
+    public static Role resolveRoleById(int id) {
+        return Arrays.stream(values())
+                .filter(role -> role.id == id)
+                .findFirst()
+                .orElseThrow(() -> new UnknownEntityException("No such Role Id " + id));
+    }
+
     @Override
     public Long getId() {
         return id;
@@ -27,16 +39,5 @@ public enum Role implements BaseEntity {
     @Override
     public String getName() {
         return this.toString();
-    }
-
-    /**
-     * todo via java.lang.enum methods!
-     * @throws UnknownEntityException if such id does not exist
-     */
-    public static Role resolveRoleById(int id) {
-        return Arrays.stream(values())
-                .filter(role -> role.id == id)
-                .findFirst()
-                .orElseThrow(() -> new UnknownEntityException("No such Role Id " + id));
     }
 }

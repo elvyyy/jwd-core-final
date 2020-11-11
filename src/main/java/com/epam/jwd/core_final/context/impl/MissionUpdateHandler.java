@@ -31,7 +31,7 @@ public class MissionUpdateHandler implements EntityMenu {
             return choice;
         }
         List<FlightMission> missions = MissionServiceImpl.getInstance().findAllMissions();
-        FlightMission flightMission = missions.get((int)choice);
+        FlightMission flightMission = missions.get((int) choice);
 
         System.out.print("Enter a new mission's name: ");
         String newName = InputUtil.handleLine();

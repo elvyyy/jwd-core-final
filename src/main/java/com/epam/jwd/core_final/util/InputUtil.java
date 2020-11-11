@@ -30,21 +30,6 @@ public class InputUtil {
         return choice;
     }
 
-    public static String handleLine() {
-        Scanner scanner = new Scanner(System.in);
-        boolean notOk = true;
-        String result = null;
-        do {
-            try {
-                result = scanner.nextLine();
-                notOk = false;
-            } catch (Exception e) {
-                notOk = true;
-            }
-        } while (notOk);
-        return result;
-    }
-
     public static LocalDateTime handleDate() {
         Scanner scanner = new Scanner(System.in);
         boolean notOk = true;
@@ -61,5 +46,20 @@ public class InputUtil {
             }
         } while (notOk);
         return dateTime;
+    }
+
+    public static String handleLine() {
+        Scanner scanner = new Scanner(System.in);
+        boolean notOk = true;
+        String result = null;
+        do {
+            try {
+                result = scanner.nextLine();
+                notOk = false;
+            } catch (Exception e) {
+                notOk = true;
+            }
+        } while (notOk);
+        return result;
     }
 }

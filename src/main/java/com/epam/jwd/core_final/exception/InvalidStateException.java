@@ -10,11 +10,6 @@ public class InvalidStateException extends Exception {
         super(message);
     }
 
-    @Override
-    public String getMessage() {
-        return super.getMessage();
-    }
-
     public InvalidStateException(String message, Throwable cause) {
         super(message, cause);
     }
@@ -25,5 +20,10 @@ public class InvalidStateException extends Exception {
 
     public InvalidStateException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
+    }
+
+    @Override
+    public String getMessage() {
+        return super.getMessage();
     }
 }

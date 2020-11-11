@@ -36,7 +36,7 @@ public class SpaceshipServiceImpl implements SpaceshipService {
     @Override
     public List<Spaceship> findAllSpaceships() {
         return new ArrayList<>(NassaContext.getInstance()
-                    .retrieveBaseEntityList(Spaceship.class));
+                .retrieveBaseEntityList(Spaceship.class));
     }
 
     @Override

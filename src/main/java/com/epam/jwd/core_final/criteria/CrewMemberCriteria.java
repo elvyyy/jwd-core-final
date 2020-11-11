@@ -11,24 +11,9 @@ import java.util.Objects;
  * Should be a builder for {@link com.epam.jwd.core_final.domain.CrewMember} fields
  */
 public class CrewMemberCriteria extends Criteria<CrewMember> {
-    private Role role;
-    private Rank rank;
     private Boolean isReadyForNextMission;
-
-    public CrewMemberCriteria setRank(Rank rank) {
-        this.rank = rank;
-        return this;
-    }
-
-    public CrewMemberCriteria setReadyForNextMission(Boolean readyForNextMission) {
-        isReadyForNextMission = readyForNextMission;
-        return this;
-    }
-
-    public CrewMemberCriteria setRole(Role role) {
-        this.role = role;
-        return this;
-    }
+    private Rank rank;
+    private Role role;
 
     @Override
     public <T extends BaseEntity> boolean matches(T entity) {
@@ -44,6 +29,21 @@ public class CrewMemberCriteria extends Criteria<CrewMember> {
             result &= isReadyForNextMission.equals(member.isReadyForNextMissions());
         }
         return result;
+    }
+
+    public CrewMemberCriteria setRank(Rank rank) {
+        this.rank = rank;
+        return this;
+    }
+
+    public CrewMemberCriteria setReadyForNextMission(Boolean readyForNextMission) {
+        isReadyForNextMission = readyForNextMission;
+        return this;
+    }
+
+    public CrewMemberCriteria setRole(Role role) {
+        this.role = role;
+        return this;
     }
 
 }

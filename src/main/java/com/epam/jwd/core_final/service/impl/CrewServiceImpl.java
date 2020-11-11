@@ -73,6 +73,14 @@ public class CrewServiceImpl implements CrewService {
     }
 
     @Override
+    public CrewMember createCrewMember(CrewMember crewMember) throws RuntimeException {
+        if (NassaContext.getInstance().retrieveBaseEntityList(CrewMember.class).add(crewMember)) {
+            return crewMember;
+        }
+        return null;
+    }
+
+    @Override
     public CrewMember createCrewMember(Role role, String name, Rank rank) throws RuntimeException {
         CrewMember crewMember = CrewMemberFactory.getInstance().create(name, role, rank);
         if (NassaContext.getInstance()
@@ -81,13 +89,5 @@ public class CrewServiceImpl implements CrewService {
             return crewMember;
         }
         throw new EntityExistsInStorage("CrewMember already exists in the storage");
-    }
-
-    @Override
-    public CrewMember createCrewMember(CrewMember crewMember) throws RuntimeException {
-        if (NassaContext.getInstance().retrieveBaseEntityList(CrewMember.class).add(crewMember)) {
-            return crewMember;
-        }
-        return null;
     }
 }
