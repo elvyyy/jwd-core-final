@@ -1,6 +1,7 @@
 package com.epam.jwd.core_final.domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,12 +29,34 @@ public class FlightMission extends AbstractBaseEntity {
 
     private MissionResult missionResult;
 
+    public FlightMission(String name, LocalDateTime startedAt, LocalDateTime endedAt,
+                         Long distance) {
+        super(name);
+        this.startedAt = startedAt;
+        this.endedAt = endedAt;
+        this.distance = distance;
+        this.missionResult = MissionResult.PLANNED;
+        assignedCrew = new ArrayList<>();
+    }
+
     public LocalDateTime getStartedAt() {
         return startedAt;
     }
 
     public LocalDateTime getEndedAt() {
         return endedAt;
+    }
+
+    @Override
+    public String toString() {
+        return "FlightMission{" +
+                "startedAt=" + startedAt +
+                ", endedAt=" + endedAt +
+                ", distance=" + distance +
+                ", assignedSpaceship=" + assignedSpaceship +
+                ", assignedCrew=" + assignedCrew +
+                ", missionResult=" + missionResult +
+                '}' + super.toString();
     }
 
     public Long getDistance() {
@@ -46,6 +69,49 @@ public class FlightMission extends AbstractBaseEntity {
 
     public List<CrewMember> getAssignedCrew() {
         return assignedCrew;
+    }
+
+    public boolean addCrewMember(CrewMember crewMember) {
+        boolean result = false;
+        if (!crewMember.isReadyForNextMissions()) {
+            return result;
+        }
+        Role role = crewMember.getRole();
+        Short limit = assignedSpaceship.getCrew().get(role);
+        if (limit != null) {
+            long count = assignedCrew.stream()
+                    .filter(cm -> cm.getRole() == role)
+                    .count();
+            if (count < limit) {
+                result = assignedCrew.add(crewMember);
+                crewMember.setReadyForNextMissions(false);
+            }
+        }
+        return result;
+    }
+
+    public void setStartedAt(LocalDateTime startedAt) {
+        this.startedAt = startedAt;
+    }
+
+    public void setEndedAt(LocalDateTime endedAt) {
+        this.endedAt = endedAt;
+    }
+
+    public void setDistance(Long distance) {
+        this.distance = distance;
+    }
+
+    public void setAssignedSpaceship(Spaceship assignedSpaceship) {
+        this.assignedSpaceship = assignedSpaceship;
+    }
+
+    public void setAssignedCrew(List<CrewMember> assignedCrew) {
+        this.assignedCrew = assignedCrew;
+    }
+
+    public void setMissionResult(MissionResult missionResult) {
+        this.missionResult = missionResult;
     }
 
     public MissionResult getMissionResult() {

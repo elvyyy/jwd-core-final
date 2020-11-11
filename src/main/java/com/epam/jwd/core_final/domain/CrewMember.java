@@ -20,6 +20,15 @@ public class CrewMember extends AbstractBaseEntity {
         super();
     }
 
+    @Override
+    public String toString() {
+        return "CrewMember{" +
+                "role=" + role +
+                ", rank=" + rank +
+                ", isReadyForNextMissions=" + isReadyForNextMissions +
+                "} " + super.toString();
+    }
+
     public CrewMember(String name, Role role, Rank rank) {
         super(name);
         this.role = role;
