@@ -64,13 +64,4 @@ public final class PropertyReaderUtil {
     public static Properties getProperties() {
         return properties;
     }
-
-    public static void main(String[] args) {
-        try {
-            loadProperties();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        ApplicationProperties instance = ApplicationProperties.getInstance();
-    }
 }
