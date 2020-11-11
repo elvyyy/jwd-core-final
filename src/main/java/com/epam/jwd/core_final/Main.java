@@ -14,8 +14,14 @@ public class Main {
         log.info("Starting application...");
         NassaContext instance;
         try {
-            ApplicationMenu start = Application.start();
-            instance = NassaContext.getInstance();
+            ApplicationMenu menu = Application.start();
+            while (true) {
+                Long choice = (Long) menu.printAvailableOptions();
+                if (choice == 0) {
+                    break;
+                }
+                menu.handleUserInput(choice);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
