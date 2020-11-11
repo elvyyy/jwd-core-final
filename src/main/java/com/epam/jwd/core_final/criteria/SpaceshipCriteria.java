@@ -1,5 +1,6 @@
 package com.epam.jwd.core_final.criteria;
 
+import com.epam.jwd.core_final.domain.BaseEntity;
 import com.epam.jwd.core_final.domain.Spaceship;
 
 import java.util.Objects;
@@ -22,13 +23,14 @@ public class SpaceshipCriteria extends Criteria<Spaceship> {
         return this;
     }
 
-    public <T extends Spaceship> boolean matches(T entity) {
+    public <T extends BaseEntity> boolean matches(T entity) {
         boolean result = super.matches(entity);
+        Spaceship member = (Spaceship) entity;
         if (Objects.nonNull(flightDistance)) {
-            result &= flightDistance == entity.getFlightDistance();
+            result &= flightDistance.equals(member.getFlightDistance());
         }
         if (Objects.nonNull(isReadyForNextMissions)) {
-            result &= isReadyForNextMissions == entity.isReadyForNextMissions();
+            result &= isReadyForNextMissions.equals(member.isReadyForNextMissions());
         }
         return result;
     }

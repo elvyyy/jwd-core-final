@@ -1,5 +1,6 @@
 package com.epam.jwd.core_final.criteria;
 
+import com.epam.jwd.core_final.domain.BaseEntity;
 import com.epam.jwd.core_final.domain.CrewMember;
 import com.epam.jwd.core_final.domain.FlightMission;
 import com.epam.jwd.core_final.domain.MissionResult;
@@ -20,7 +21,7 @@ public class FlightMissionCriteria extends Criteria<FlightMission> {
 
     private Long distance;
 
-    private Spaceship assignedSpaceShift;
+    private Spaceship assignedSpaceship;
 
     private List<CrewMember> assignedCrew;
 
@@ -41,8 +42,8 @@ public class FlightMissionCriteria extends Criteria<FlightMission> {
         return this;
     }
 
-    public FlightMissionCriteria setAssignedSpaceShift(Spaceship assignedSpaceShift) {
-        this.assignedSpaceShift = assignedSpaceShift;
+    public FlightMissionCriteria setAssignedSpaceship(Spaceship assignedSpaceship) {
+        this.assignedSpaceship = assignedSpaceship;
         return this;
     }
 
@@ -56,25 +57,27 @@ public class FlightMissionCriteria extends Criteria<FlightMission> {
         return this;
     }
 
-    public <T extends FlightMission> boolean matches(T entity) {
+    @Override
+    public <T extends BaseEntity> boolean matches(T entity) {
         boolean result = super.matches(entity);
+        FlightMission member = (FlightMission) entity;
         if (Objects.nonNull(startedAt)) {
-            result &= startedAt.equals(entity.getStartedAt());
+            result &= startedAt.equals(member.getStartedAt());
         }
         if (Objects.nonNull(endedAt)) {
-            result &= endedAt.equals(entity.getEndedAt());
+            result &= endedAt.equals(member.getEndedAt());
         }
         if (Objects.nonNull(distance)) {
-            result &= distance == entity.getDistance();
+            result &= distance.equals(member.getDistance());
         }
-        if (Objects.nonNull(assignedSpaceShift)) {
-            result &= assignedSpaceShift.equals(entity.getAssignedSpaceship());
+        if (Objects.nonNull(assignedSpaceship)) {
+            result &= assignedSpaceship.equals(member.getAssignedSpaceship());
         }
         if (Objects.nonNull(assignedCrew)) {
-            result &= assignedCrew.equals(entity.getAssignedCrew());
+            result &= assignedCrew.equals(member.getAssignedCrew());
         }
         if (Objects.nonNull(missionResult)) {
-            result &= missionResult == entity.getMissionResult();
+            result &= missionResult.equals(member.getMissionResult());
         }
         return result;
     }

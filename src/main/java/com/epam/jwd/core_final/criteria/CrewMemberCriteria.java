@@ -1,5 +1,6 @@
 package com.epam.jwd.core_final.criteria;
 
+import com.epam.jwd.core_final.domain.BaseEntity;
 import com.epam.jwd.core_final.domain.CrewMember;
 import com.epam.jwd.core_final.domain.Rank;
 import com.epam.jwd.core_final.domain.Role;
@@ -29,16 +30,18 @@ public class CrewMemberCriteria extends Criteria<CrewMember> {
         return this;
     }
 
-    public <T extends CrewMember> boolean matches(T entity) {
+    @Override
+    public <T extends BaseEntity> boolean matches(T entity) {
         boolean result = super.matches(entity);
+        CrewMember member = (CrewMember) entity;
         if (Objects.nonNull(role)) {
-            result &= role == entity.getRole();
+            result &= role == member.getRole();
         }
         if (Objects.nonNull(rank)) {
-            result &= rank == entity.getRank();
+            result &= rank == member.getRank();
         }
         if (Objects.nonNull(isReadyForNextMission)) {
-            result &= isReadyForNextMission == entity.isReadyForNextMissions();
+            result &= isReadyForNextMission.equals(member.isReadyForNextMissions());
         }
         return result;
     }
