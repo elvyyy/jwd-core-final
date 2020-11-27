@@ -1,28 +1,52 @@
-#JWD Final Java core task
-##Requirements 
-* Fork this [git repository](https://github.com/Rement/jwd-core-final)
-* You should not remove MY comments
-* You have to follow [Java code conventions](https://www.oracle.com/java/technologies/javase/codeconventions-contents.html) ! 
-* Code must compile 
-* You have to do the latest commit before **23:59 7th November (Minsk time)**
-* Use slf4j for logging your actions (You should store INFO or higher messages in output log files, which have 5 generations)
-* You are NOT able to use any codegenerators (i.e. Lombok)
-* Console input should be done using java.util.Scanner
-* Input files contains structure description, starts with hash
+![Схема БД](https://github.com/eeelvy/jwd-core-final/blob/master/img/jwd-bd.png)
 
-###Mandatory tasks: 
-* In domain package update entity based on requirements
-* Implements service interfaces
-* Extend missed criteria implementations
-* Update custom exception with meaningful messages (feel free to create your own exceptions, if you need them)
-* Populate context with missing implementation
-* Design UI for ApplicationMenu (user should be able to get/update information about CrewMembers, Spaceships. 
-Able to create/update mission information). 
-Able to write information about selected mission(s) in output file in json format
+```mysql
+CREATE SCHEMA IF NOT EXISTS jwd;
+USE jwd;
 
+DROP TABLE IF EXISTS crew_members;
+CREATE TABLE crew_members(
+	id SERIAL PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    rank ENUM('TRAINEE', 'SECOND_OFFICER', 'FIRST_OFFICER', 'CAPTAIN') NOT NULL,
+    role ENUM('MISSION_SPECIALIST', 'FLIGHT_ENGINEER', 'PILOT', 'COMMANDER') NOT NULL,
+    is_ready_for_next_mission BOOL NOT NULL DEFAULT TRUE
+) COMMENT = 'CrewMembers';   
 
+DROP TABLE IF EXISTS spaceships;
+CREATE TABLE spaceships(
+	id SERIAL PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    flight_distance BIGINT UNSIGNED ZEROFILL NOT NULL,
+    is_ready_for_next_missions BOOL NOT NULL DEFAULT TRUE
+);
 
-###Additional tasks:
-* Create tests using Junit, Mockito for your functionality
-* Implement additional option in a menu (for mission) with real-time flight-status
-* Discuss with mentor any improvements, you want to implement 
+DROP TABLE IF EXISTS shaceship_crews;
+CREATE TABLE shaceship_crews(
+	id SERIAL PRIMARY KEY,
+	spaceship_id BIGINT UNSIGNED NOT NULL,
+    role ENUM('MISSION_SPECIALIST', 'FLIGHT_ENGINEER', 'PILOT', 'COMMANDER') NOT NULL,
+    number_of_crew_members SMALLINT UNSIGNED NOT NULL,
+    FOREIGN KEY (spaceship_id) REFERENCES spaceships(id)
+);
+
+DROP TABLE IF EXISTS flight_missions;
+CREATE TABLE flight_missions(
+	id SERIAL PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    distance BIGINT UNSIGNED ZEROFILL NOT NULL,
+    assigned_spaceship_id BIGINT UNSIGNED NOT NULL,
+    mission_result ENUM('CANCELLED', 'FAILED', 'PLANNED', 'IN_PROGRESS', 'COMPLETED') NOT NULL,
+    started_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    ended_at DATETIME NOT NULL
+);
+
+DROP TABLE IF EXISTS assigned_crew;
+CREATE TABLE assigned_crew(
+	id SERIAL PRIMARY KEY,
+	flight_mission_id BIGINT UNSIGNED NOT NULL,
+    crew_member_id BIGINT UNSIGNED NOT NULL,
+    FOREIGN KEY (flight_mission_id) REFERENCES flight_missions(id),
+    FOREIGN KEY (crew_member_id) REFERENCES crew_members(id)
+);
+```
