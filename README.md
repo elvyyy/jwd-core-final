@@ -1,4 +1,4 @@
-![Схема БД](https://github.com/eeelvy/jwd-core-final/blob/master/img/jwd-bd.png)
+![Схема БД](https://github.com/elvyyy/jwd-core-final/blob/master/img/jwd-db.png)
 
 ```mysql
 CREATE SCHEMA IF NOT EXISTS jwd;
